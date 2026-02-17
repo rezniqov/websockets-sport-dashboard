@@ -6,8 +6,7 @@
       "dev": "node --watch src/index.js",
       "start": "node src/index.js",
       "db:generate": "drizzle-kit generate",
-      "db:migrate": "drizzle-kit migrate",
-      "db:crud": "node src/drizzle-crud.js"
+      "db:migrate": "drizzle-kit migrate"
    },
    "keywords": [],
    "author": "",
