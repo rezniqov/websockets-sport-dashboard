@@ -4,7 +4,9 @@
    "main": "index.js",
    "scripts": {
       "dev": "node --watch src/index.js",
-      "start": "node src/index.js"
+      "start": "node src/index.js",
+      "db:generate": "drizzle-kit generate",
+      "db:migrate": "drizzle-kit migrate"
    },
    "keywords": [],
    "author": "",
@@ -12,6 +14,12 @@
    "description": "",
    "type": "module",
    "dependencies": {
-      "express": "^5.2.1"
+      "dotenv": "^17.3.1",
+      "drizzle-orm": "^0.45.1",
+      "express": "^5.2.1",
+      "pg": "^8.18.0"
+   },
+   "devDependencies": {
+      "drizzle-kit": "^0.31.9"
    }
 }
