@@ -1,50 +1,70 @@
 import { WebSocket, WebSocketServer } from 'ws';
+import { wsArcjet } from '../arcjet.js';
 
 function sendJson(socket, payload) {
-   if (socket.readyState !== WebSocket.OPEN) return;
+  if (socket.readyState !== WebSocket.OPEN) return;
 
-   socket.send(JSON.stringify(payload));
+  socket.send(JSON.stringify(payload));
 }
 
 function broadcast(wss, payload) {
-   wss.clients.forEach((client) => {
-      sendJson(client, payload);
-   });
+  wss.clients.forEach((client) => {
+    sendJson(client, payload);
+  });
 }
 
 export function attachWebSocketServer(server) {
-   const wss = new WebSocketServer({ server, path: '/ws', maxPayload: 1024 * 1024 });
+  const wss = new WebSocketServer({ server, path: '/ws', maxPayload: 1024 * 1024 });
 
-   wss.on('connection', (socket) => {
-      socket.isAlive = true;
-      socket.on('pong', () => {
-         socket.isAlive = true;
-      });
-
-      sendJson(socket, { type: 'welcome' });
-
-      socket.on('error', console.error);
-   });
-
-   const heartbeatInterval = setInterval(() => {
-      wss.clients.forEach((socket) => {
-         if (!socket.isAlive) return socket.terminate();
-         socket.isAlive = false;
-         socket.ping();
-      });
-   }, 30000);
-
-   wss.on('close', () => clearInterval(heartbeatInterval));
-
-   function broadcastMatchCreated(match) {
+  wss.on('connection', async (socket, req) => {
+    if (wsArcjet) {
       try {
-         broadcast(wss, { type: 'match_created', data: match });
-      } catch (error) {
-         console.error('Error broadcasting match created:', error);
-      }
-   }
+        const decision = await wsArcjet.protect(req);
 
-   return {
-      broadcastMatchCreated,
-   };
+        if (decision.isDenied()) {
+          const isRateLimit = decision.reason.isRateLimit();
+          const code = decision.reason.isRateLimit ? 1013 : 1008;
+          const reason = isRateLimit ? 'Rate limit exceeded' : 'Access denied';
+
+          socket.close(code, reason);
+          return;
+        }
+      } catch (error) {
+        console.error('WS connection error', error);
+        socket.close(1011, 'Server security error');
+        return;
+      }
+    }
+
+    socket.isAlive = true;
+    socket.on('pong', () => {
+      socket.isAlive = true;
+    });
+
+    sendJson(socket, { type: 'welcome' });
+
+    socket.on('error', console.error);
+  });
+
+  const heartbeatInterval = setInterval(() => {
+    wss.clients.forEach((socket) => {
+      if (!socket.isAlive) return socket.terminate();
+      socket.isAlive = false;
+      socket.ping();
+    });
+  }, 30000);
+
+  wss.on('close', () => clearInterval(heartbeatInterval));
+
+  function broadcastMatchCreated(match) {
+    try {
+      broadcast(wss, { type: 'match_created', data: match });
+    } catch (error) {
+      console.error('Error broadcasting match created:', error);
+    }
+  }
+
+  return {
+    broadcastMatchCreated,
+  };
 }

@@ -2,6 +2,132 @@
 # yarn lockfile v1
 
 
+"@arcjet/analyze-wasm@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/analyze-wasm/-/analyze-wasm-1.1.0.tgz#292b7d3bbede3f5d04c79100393c0f6b721896a7"
+  integrity sha512-CrzSBa9rQFQRfIUofm2FuwVjlnCdWK8hQz3uxbMqYFFLeGPAQftM2noHM7P2p+2Rq6j1p6u462RIpjg2Y2rhXQ==
+
+"@arcjet/analyze@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/analyze/-/analyze-1.1.0.tgz#f771f85e1a38b1653c75b3eab86249056311804a"
+  integrity sha512-rbgjTjk4PvoRh8wweerD5Qr0G/xar0XWNiRTvzcmrnJofuhESLjWD87p3Y3Od307gzex8Whtu+jA0LvII1H4DA==
+  dependencies:
+    "@arcjet/analyze-wasm" "1.1.0"
+    "@arcjet/protocol" "1.1.0"
+
+"@arcjet/body@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/body/-/body-1.1.0.tgz#15112106cd7084aef20fd50f3d270da8b938b788"
+  integrity sha512-ijMcy71ezPtu9aj29Cde6McBd634ugtqD26ufF8r/fb7YH/eYsWJQS4LZBnkEdgangAfb2VO1VEUpKwGSyZmqA==
+
+"@arcjet/cache@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/cache/-/cache-1.1.0.tgz#e37d239118bf2f968119c456c437acfaf4866836"
+  integrity sha512-TFt5PdlQVOngGTL+Q02NLGtv6Ks15m68a5Jksk9rEDM8vVzwoFE6KXawPNPm0pcwow4a/C+GcYwYprDm7MpXlw==
+
+"@arcjet/duration@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/duration/-/duration-1.1.0.tgz#ba727d8d8633dd3f4384b71677055ed4b1881273"
+  integrity sha512-22MVyEnJgRv4RpFol6LefKAjh2ei7ekBIkawPZi+F0YNQtGPTTJP7r+gLT615oUcZFptBxiuogsXk6zhFycSsA==
+
+"@arcjet/env@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/env/-/env-1.1.0.tgz#e63c72251af06b1e9cfbe52ad06330bdc12d37b7"
+  integrity sha512-q6GLj4HRBJZy12EHtqre1ihvSJMikl5jwenzIMjBkkAIuyl0bpOpMpnIuaP5bJ4dkVLTpsicIcEYn6aFGZsXOA==
+
+"@arcjet/headers@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/headers/-/headers-1.1.0.tgz#15eb307863ee413e19ccf586b15838a5e73c2a3d"
+  integrity sha512-V4PVy84gxc30g8CGZaLl//QAogdaAKJ2Sbtjccd5iUmxeUXXdqW3L0/xwm0xCebwB8rxojwhG7CzD3uv781Zdw==
+
+"@arcjet/inspect@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/inspect/-/inspect-1.1.0.tgz#58590115573c60842170e0b90b667239aaa61d5c"
+  integrity sha512-yaBGbG/iwfpR/mfyiomLGzePjUr7YFzLi2qss/TjDLcX6TvQ4nW+HqOidGzAE5IVqdtl13TG9vD2f2tv9AkIog==
+  dependencies:
+    "@arcjet/protocol" "1.1.0"
+
+"@arcjet/ip@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/ip/-/ip-1.1.0.tgz#dfa4b417eb2dec65a627e3cc8cb788624b164915"
+  integrity sha512-mxOqZ/EVhO3bN7NBr36yURyFLE9KEXUzW+Pbq3U9HogqjMoNA4g3rkomVo3cNWhJcNCHNMRKplWbFsvVuyRdHQ==
+
+"@arcjet/logger@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/logger/-/logger-1.1.0.tgz#03fd182a68b8fc58cd01cc350ebaa91e3aec343d"
+  integrity sha512-QQkDpdevbDOK8Ojy7REQap6y3J0fC1/5D/TE7hlC41Y2Gz6oyXIYzbLxEoyCYkfzMeOnMthHAXXwzI+E2gvdgg==
+  dependencies:
+    "@arcjet/sprintf" "1.1.0"
+
+"@arcjet/node@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/node/-/node-1.1.0.tgz#bad880cf0e857d1a23b4e82f8663a3b6b6e5409b"
+  integrity sha512-89WpKP3xwvpLuKPhN7hWMAER76EnI6f5tUydVMm+LJF1TKJcZt80L91vEO4nTQU+is28BR57P4/IF7q+voDQSQ==
+  dependencies:
+    "@arcjet/body" "1.1.0"
+    "@arcjet/env" "1.1.0"
+    "@arcjet/headers" "1.1.0"
+    "@arcjet/ip" "1.1.0"
+    "@arcjet/logger" "1.1.0"
+    "@arcjet/protocol" "1.1.0"
+    "@arcjet/transport" "1.1.0"
+    arcjet "1.1.0"
+
+"@arcjet/protocol@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/protocol/-/protocol-1.1.0.tgz#95e72bbda0be3454962c72cb8eae95b7d255654d"
+  integrity sha512-evjUsyOh04bQgH9lWm/xIyqF3C8XkiKvRa/QYuUvMYEpe/J1hndHaOZqzqlzQqkm44cbM5l8s+06SpHyaG/iFg==
+  dependencies:
+    "@arcjet/cache" "1.1.0"
+    "@bufbuild/protobuf" "2.11.0"
+    "@connectrpc/connect" "2.1.1"
+    typeid-js "1.2.0"
+
+"@arcjet/runtime@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/runtime/-/runtime-1.1.0.tgz#2a7520bec110681c863aa5fbf6b53521884e47ce"
+  integrity sha512-v/7I9n3l9ZHBWGOoSBIxhEZ5WhcLPToWWXz8HBn30H1UFzholJCSDvIKesTogSt/EmxEUVDwxnHFZxZh+EX9Zw==
+
+"@arcjet/sprintf@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/sprintf/-/sprintf-1.1.0.tgz#ad9d4935991bfc7585e6094b63329a80dbe01aff"
+  integrity sha512-YA19YrUYnEPxVPS5O41MlkynVLEtBVeu/eqrXGckQHmS7PuyNZEO2h8ZU+6G+ppua9igZUEzgYFVIh6UJRjWpQ==
+
+"@arcjet/stable-hash@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/stable-hash/-/stable-hash-1.1.0.tgz#91b1f40d69f1ecceeb3b74ef7634ebeb5c6921d0"
+  integrity sha512-JdeLw2r7f4sJKRi48BAypjcqgwlMf8LgcVZs3xH+CjE0N9DAxkl1AY/6Wt03WOz4S0FahC/amzCVNMJ6TlnQfA==
+
+"@arcjet/transport@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@arcjet/transport/-/transport-1.1.0.tgz#252dc8a4e9eb71510150a177db1a68d8ddae6751"
+  integrity sha512-nv/9HSroy4UxndxFYF39St4t8yXTTKGnaKXqPDhRGBHwPGPMLvLHxvXD4bguDWu5iMSKGazsJFJx/RD/7SwG9Q==
+  dependencies:
+    "@bufbuild/protobuf" "2.11.0"
+    "@connectrpc/connect" "2.1.1"
+    "@connectrpc/connect-node" "2.1.1"
+    "@connectrpc/connect-web" "2.1.1"
+
+"@bufbuild/protobuf@2.11.0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/protobuf/-/protobuf-2.11.0.tgz#3ec3985c9074b23aea337957225fe15a0e845f8e"
+  integrity sha512-sBXGT13cpmPR5BMgHE6UEEfEaShh5Ror6rfN3yEK5si7QVrtZg8LEPQb0VVhiLRUslD2yLnXtnRzG035J/mZXQ==
+
+"@connectrpc/connect-node@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@connectrpc/connect-node/-/connect-node-2.1.1.tgz#1756dfa24c0bf6f69c9151f99bdaf7e6d10bf24a"
+  integrity sha512-s3TfsI1XF+n+1z6MBS9rTnFsxxR4Rw5wmdEnkQINli81ESGxcsfaEet8duzq8LVuuCupmhUsgpRo0Nv9pZkufg==
+
+"@connectrpc/connect-web@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@connectrpc/connect-web/-/connect-web-2.1.1.tgz#155eb30cd8cfc91142870277ab300d313f9d8dcf"
+  integrity sha512-J8317Q2MaFRCT1jzVR1o06bZhDIBmU0UAzWx6xOIXzOq8+k71/+k7MUF7AwcBUX+34WIvbm5syRgC5HXQA8fOg==
+
+"@connectrpc/connect@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@connectrpc/connect/-/connect-2.1.1.tgz#a9623190d218890bec2d68e56037cb124a33e857"
+  integrity sha512-JzhkaTvM73m2K1URT6tv53k2RwngSmCXLZJgK580qNQOXRzZRR/BCMfZw3h+90JpnG6XksP5bYT+cz0rpUzUWQ==
+
 "@drizzle-team/brocli@^0.10.2":
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/@drizzle-team/brocli/-/brocli-0.10.2.tgz#9757c006a43daaa6f45512e6cf5fabed36fb9da7"
@@ -270,6 +396,19 @@ accepts@^2.0.0:
   dependencies:
     mime-types "^3.0.0"
     negotiator "^1.0.0"
+
+arcjet@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/arcjet/-/arcjet-1.1.0.tgz#f03fb0c442ffca4846084c93ac08a856613d7449"
+  integrity sha512-YRzr8kfTLdSdp45W5Xrzf1+TMAvDYELD2D2Gg6jXgLZl0PjM/SoK3TMCTz/CMxohBx2AV17/wSM24YjcDEoHcg==
+  dependencies:
+    "@arcjet/analyze" "1.1.0"
+    "@arcjet/cache" "1.1.0"
+    "@arcjet/duration" "1.1.0"
+    "@arcjet/headers" "1.1.0"
+    "@arcjet/protocol" "1.1.0"
+    "@arcjet/runtime" "1.1.0"
+    "@arcjet/stable-hash" "1.1.0"
 
 body-parser@^2.2.1:
   version "2.2.2"
@@ -923,10 +1062,22 @@ type-is@^2.0.1:
     media-typer "^1.1.0"
     mime-types "^3.0.0"
 
+typeid-js@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/typeid-js/-/typeid-js-1.2.0.tgz#db3d13e700c5525e3203dc4e0fcb611af1e3f5b3"
+  integrity sha512-t76ZucAnvGC60ea/HjVsB0TSoB0cw9yjnfurUgtInXQWUI/VcrlZGpO23KN3iSe8yOGUgb1zr7W7uEzJ3hSljA==
+  dependencies:
+    uuid "^10.0.0"
+
 unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==
+
+uuid@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-10.0.0.tgz#5a95aa454e6e002725c79055fd42aaba30ca6294"
+  integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
 
 vary@^1.1.2:
   version "1.1.2"
