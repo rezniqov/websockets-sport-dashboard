@@ -17,24 +17,32 @@ export function attachWebSocketServer(server) {
   const wss = new WebSocketServer({ server, path: '/ws', maxPayload: 1024 * 1024 });
 
   wss.on('connection', async (socket, req) => {
-    if (wsArcjet) {
-      try {
-        const decision = await wsArcjet.protect(req);
+    socket.on('upgrade', async (req, socket, head) => {
+      const { pathname } = new URL(req.url, `http://${req.headers.host}`);
 
-        if (decision.isDenied()) {
-          const isRateLimit = decision.reason.isRateLimit();
-          const code = isRateLimit ? 1013 : 1008;
-          const reason = isRateLimit ? 'Rate limit exceeded' : 'Access denied';
-
-          socket.close(code, reason);
-          return;
-        }
-      } catch (error) {
-        console.error('WS connection error', error);
-        socket.close(1011, 'Server security error');
+      if (pathname !== '/ws') {
         return;
       }
-    }
+
+      if (wsArcjet) {
+        try {
+          const decision = await wsArcjet.protect(req);
+
+          if (decision.isDenied()) {
+            const isRateLimit = decision.reason.isRateLimit();
+            const code = isRateLimit ? 1013 : 1008;
+            const reason = isRateLimit ? 'Rate limit exceeded' : 'Access denied';
+
+            socket.close(code, reason);
+            return;
+          }
+        } catch (error) {
+          console.error('WS connection error', error);
+          socket.close(1011, 'Server security error');
+          return;
+        }
+      }
+    });
 
     socket.isAlive = true;
     socket.on('pong', () => {
