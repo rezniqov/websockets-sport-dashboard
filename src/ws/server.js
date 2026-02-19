@@ -16,34 +16,34 @@ function broadcast(wss, payload) {
 export function attachWebSocketServer(server) {
   const wss = new WebSocketServer({ server, path: '/ws', maxPayload: 1024 * 1024 });
 
-  wss.on('connection', async (socket, req) => {
-    socket.on('upgrade', async (req, socket, head) => {
-      const { pathname } = new URL(req.url, `http://${req.headers.host}`);
+  server.on('upgrade', async (req, socket, head) => {
+    const { pathname } = new URL(req.url, `http://${req.headers.host}`);
 
-      if (pathname !== '/ws') {
-        return;
-      }
+    if (pathname !== '/ws') {
+      return;
+    }
 
-      if (wsArcjet) {
-        try {
-          const decision = await wsArcjet.protect(req);
+    if (wsArcjet) {
+      try {
+        const decision = await wsArcjet.protect(req);
 
-          if (decision.isDenied()) {
-            const isRateLimit = decision.reason.isRateLimit();
-            const code = isRateLimit ? 1013 : 1008;
-            const reason = isRateLimit ? 'Rate limit exceeded' : 'Access denied';
+        if (decision.isDenied()) {
+          const isRateLimit = decision.reason.isRateLimit();
+          const code = isRateLimit ? 1013 : 1008;
+          const reason = isRateLimit ? 'Rate limit exceeded' : 'Access denied';
 
-            socket.close(code, reason);
-            return;
-          }
-        } catch (error) {
-          console.error('WS connection error', error);
-          socket.close(1011, 'Server security error');
+          socket.close(code, reason);
           return;
         }
+      } catch (error) {
+        console.error('WS connection error', error);
+        socket.close(1011, 'Server security error');
+        return;
       }
-    });
+    }
+  });
 
+  wss.on('connection', async (socket, req) => {
     socket.isAlive = true;
     socket.on('pong', () => {
       socket.isAlive = true;
