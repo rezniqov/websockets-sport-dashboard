@@ -7,16 +7,14 @@ if (!arcjetKey) {
   throw new Error('ARCJET_KEY environment variable is not set');
 }
 
-export const httpArcjet = arcjetKey
-  ? arcjet({
-      key: arcjetKey,
-      rules: [
-        shield({ mode: arcjetMode }),
-        detectBot({ mode: arcjetMode, allow: ['CATEGORY:SEARCH_ENGINE', 'CATEGORY:PREVIEW'] }),
-        slidingWindow({ mode: arcjetMode, interval: '10s', max: 50 }),
-      ],
-    })
-  : null;
+export const httpArcjet = arcjet({
+  key: arcjetKey,
+  rules: [
+    shield({ mode: arcjetMode }),
+    detectBot({ mode: arcjetMode, allow: ['CATEGORY:SEARCH_ENGINE', 'CATEGORY:PREVIEW'] }),
+    slidingWindow({ mode: arcjetMode, interval: '10s', max: 50 }),
+  ],
+});
 
 export const wsArcjet = arcjetKey
   ? arcjet({
