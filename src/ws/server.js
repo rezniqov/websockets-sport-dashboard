@@ -42,7 +42,7 @@ function broadcastToAll(wss, payload) {
 
 function broadcastToMatch(matchId, payload) {
   const subscribers = matchSubscribers.get(matchId);
-  if (!subscribers || !subscribers.size === 0) return;
+  if (!subscribers || subscribers.size === 0) return;
 
   subscribers.forEach((socket) => {
     sendJson(socket, payload);

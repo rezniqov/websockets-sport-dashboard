@@ -23,7 +23,7 @@ commentaryRouter.get('/', async (req, res) => {
   }
 
   const { id: matchId } = parsedParams.data;
-  const limit = Math.min(parsedQuery.data.limit ?? 100, MAX_LIMIT);
+  const limit = Math.min(parsedQuery.data.limit ?? MAX_LIMIT, MAX_LIMIT);
 
   try {
     const data = await db
@@ -64,8 +64,10 @@ commentaryRouter.post('/', async (req, res) => {
       })
       .returning();
 
-    if (res.app.locals.broadcastCommentary) {
-      res.app.locals.broadcastCommentary(entry.matchId, entry);
+    try {
+      res.app.locals.broadcastCommentary?.(entry.matchId, entry);
+    } catch (broadcastError) {
+      console.error('Failed to broadcast commentary:', broadcastError);
     }
 
     return res.status(201).json({ data: entry });
